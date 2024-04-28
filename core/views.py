@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
+from .models import Curso
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -34,3 +36,48 @@ def register(request):
             data['form'] = user_creation_form
 
     return render(request, 'registration/register.html', data)
+
+
+#########################################
+
+
+
+
+def registrarCurso(request):
+    codigo = request.POST['txtCodigo']
+    nombre = request.POST['txtNombre']
+    creditos = request.POST['numCreditos']
+
+    curso = Curso.objects.create(
+        codigo=codigo, nombre=nombre, creditos=creditos)
+    messages.success(request, '¡Curso registrado!')
+    return redirect('/')
+
+
+def edicionCurso(request, codigo):
+    curso = Curso.objects.get(codigo=codigo)
+    return render(request, "edicionCurso.html", {"curso": curso})
+
+
+def editarCurso(request):
+    codigo = request.POST['txtCodigo']
+    nombre = request.POST['txtNombre']
+    creditos = request.POST['numCreditos']
+
+    curso = Curso.objects.get(codigo=codigo)
+    curso.nombre = nombre
+    curso.creditos = creditos
+    curso.save()
+
+    messages.success(request, '¡Curso actualizado!')
+
+    return redirect('/')
+
+
+def eliminarCurso(request, codigo):
+    curso = Curso.objects.get(codigo=codigo)
+    curso.delete()
+
+    messages.success(request, '¡Curso eliminado!')
+
+    return redirect('/')
