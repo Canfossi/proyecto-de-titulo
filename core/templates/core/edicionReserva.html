@@ -1,6 +1,6 @@
 {% extends "./base.html" %}
 
-{% block title %} Gestión de Cursos {% endblock %}
+{% block title %} Gestión de reserva {% endblock %}
 
 {% block body %}
 <div class="row">
@@ -8,17 +8,17 @@
         
         <div class="card">
             <div class="card-body">
-                <form action="/editarCurso/" method="POST">{% csrf_token %}
+                <form action="/editarReserva/" method="POST">{% csrf_token %}
                     <div class="form-group">
-                        <input type="text" id="txtCodigo" name="txtCodigo" value="{{curso.codigo}}" class="form-control" placeholder="Código"
+                        <input type="text" id="txtCodigo" name="txtCodigo" value="{{reserva.codigo}}" class="form-control" placeholder="Código"
                             minlength="6" maxlength="6" readonly required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txtNombre" name="txtNombre" value="{{curso.nombre}}" class="form-control" placeholder="Nombre"
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{reserva.nombre}}" class="form-control" placeholder="Nombre"
                             maxlength="50" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="numCreditos" name="numCreditos" value="{{curso.creditos}}" class="form-control" min="1" max="9"
+                        <input type="text" id="numCreditos" name="numCreditos" value="{{reserva.creditos}}" class="form-control" min="1" max="9"
                             value="1" required>
                     </div>
                     <div class="form-group">

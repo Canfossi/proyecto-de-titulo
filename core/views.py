@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
-from .models import Curso
+from .models import Reserva
 from django.contrib import messages
 
 # Create your views here.
@@ -43,41 +43,41 @@ def register(request):
 
 
 
-def registrarCurso(request):
+def registrarReserva(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
 
-    curso = Curso.objects.create(
+    reserva = Reserva.objects.create(
         codigo=codigo, nombre=nombre, creditos=creditos)
-    messages.success(request, '¡Curso registrado!')
+    messages.success(request, 'Reserva registrada!')
     return redirect('/')
 
 
-def edicionCurso(request, codigo):
-    curso = Curso.objects.get(codigo=codigo)
-    return render(request, "edicionCurso.html", {"curso": curso})
+def edicionReserva(request, codigo):
+    reserva = Reserva.objects.get(codigo=codigo)
+    return render(request, "edicionReserva.html", {"reserva": reserva})
 
 
-def editarCurso(request):
+def editarReserva(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
 
-    curso = Curso.objects.get(codigo=codigo)
-    curso.nombre = nombre
-    curso.creditos = creditos
-    curso.save()
+    reserva = Reserva.objects.get(codigo=codigo)
+    reserva.nombre = nombre
+    reserva.creditos = creditos
+    reserva.save()
 
-    messages.success(request, '¡Curso actualizado!')
+    messages.success(request, 'Reserva actualizado!')
 
     return redirect('/')
 
 
-def eliminarCurso(request, codigo):
-    curso = Curso.objects.get(codigo=codigo)
-    curso.delete()
+def eliminarReserva(request, codigo):
+    reserva = Reserva.objects.get(codigo=codigo)
+    reserva.delete()
 
-    messages.success(request, '¡Curso eliminado!')
+    messages.success(request, '¡Reserva eliminada!')
 
     return redirect('/')

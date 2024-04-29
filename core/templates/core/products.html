@@ -17,7 +17,7 @@
         
         <div class="card">
             <div class="card-body">
-                <form action="/registrarCurso/" method="POST">{% csrf_token %}
+                <form action="/registrarReserva/" method="POST">{% csrf_token %}
                     <div class="form-group">
                         <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código"
                             minlength="6" maxlength="6" required>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-        <h1>Listado de Cursos</h1>
+        <h1>Listado de reserva</h1>
         <div class="table-responsive py-2">
             <table class="table table-striped">
                 <thead>
@@ -51,14 +51,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for c in cursos %}
+                    {% for c in reservas %}
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td>{{c.codigo}}</td>
                         <td>{{c.nombre}}</td>
                         <td>{{c.creditos}}</td>
-                        <td><a href="edicionCurso/{{c.codigo}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                        <td><a href="edicionReserva/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarReserva/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
