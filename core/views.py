@@ -8,7 +8,14 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
+    
     return render(request, 'core/home.html')
+
+def home(request):
+    reservaListados = Reserva.objects.all()
+    messages.success(request, 'reserva listados!')
+    return render(request, "core/products.html", {"reservas": reservaListados})
+
 
 @login_required
 def products(request):
@@ -49,7 +56,7 @@ def registrarReserva(request):
     creditos = request.POST['numCreditos']
 
     reserva = Reserva.objects.create(
-        codigo=codigo, nombre=nombre, creditos=creditos)
+    codigo=codigo, nombre=nombre, creditos=creditos)
     messages.success(request, 'Reserva registrada!')
     return redirect('/')
 
