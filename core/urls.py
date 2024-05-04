@@ -28,7 +28,7 @@ urlpatterns = [
     #########################|  
    
     path('registrarReserva/', views.registrarReserva),
-    path('edicionReserva/<codigo>', views.edicionReserva),
+    path('ReservaCon/<codigo>', views.ReservaCon),
     path('editarReserva/', views.editarReserva),
     path('eliminarReserva/<codigo>', views.eliminarReserva)
 ]

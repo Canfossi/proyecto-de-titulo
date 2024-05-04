@@ -61,9 +61,9 @@ def registrarReserva(request):
     return redirect('/')
 
 
-def edicionReserva(request, codigo):
+def ReservaCon(request, codigo):
     reserva = Reserva.objects.get(codigo=codigo)
-    return render(request, "edicionReserva.html", {"reserva": reserva})
+    return render(request, "ReservaCon.html", {"reserva": reserva})
 
 
 def editarReserva(request):
