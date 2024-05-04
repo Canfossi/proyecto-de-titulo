@@ -5,6 +5,9 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from .models import Reserva
 from django.contrib import messages
+##prueba de envio de email
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
 # Create your views here.
 def home(request):
@@ -61,9 +64,9 @@ def registrarReserva(request):
     return redirect('/')
 
 
-def ReservaCon(request, codigo):
+def editar(request, codigo):
     reserva = Reserva.objects.get(codigo=codigo)
-    return render(request, "ReservaCon.html", {"reserva": reserva})
+    return render(request, 'core/editar.html', {"reserva": reserva})
 
 
 def editarReserva(request):
@@ -88,3 +91,6 @@ def eliminarReserva(request, codigo):
     messages.success(request, '¡Reserva eliminada!')
 
     return redirect('/')
+
+
+def contact (request):
