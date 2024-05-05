@@ -6,28 +6,26 @@ from django.contrib.auth import authenticate, login
 from .models import Reserva
 from django.contrib import messages
 ##prueba de envio de email
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+
 
 # Create your views here.
 def home(request):
     
-    return render(request, 'core/home.html')
+    return render(request,'core/home.html')
 
-def home(request):
-    reservaListados = Reserva.objects.all()
-    messages.success(request, 'reserva listados!')
-    return render(request, "core/products.html", {"reservas": reservaListados})
 
 
 @login_required
+###############
 def products(request):
-    return render(request, 'core/products.html')
-
+    reservaListados = Reserva.objects.all()
+    messages.success(request, 'reserva listados!')
+    return render(request, "core/products.html", {"reservas": reservaListados})
+#############
 def exit(request):
     logout(request)
     return redirect('home')
-
+################
 def register(request):
     data = {
         'form': CustomUserCreationForm()
@@ -51,8 +49,6 @@ def register(request):
 #########################################
 
 
-
-
 def registrarReserva(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
@@ -62,36 +58,39 @@ def registrarReserva(request):
     reserva = Reserva.objects.create(
     codigo=codigo, nombre=nombre, creditos=creditos, email=email)
     messages.success(request, 'Reserva registrada!')
-    return redirect('/')
+    return redirect('products')
 
-
+############
 def editar(request, codigo):
     reserva = Reserva.objects.get(codigo=codigo)
     return render(request, 'core/editar.html', {"reserva": reserva})
 
-
+###################
 def editarReserva(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
-    email = request.POST['numEmail']
     creditos = request.POST['numCreditos']
+    
 
     reserva = Reserva.objects.get(codigo=codigo)
     reserva.nombre = nombre
     reserva.creditos = creditos
+    
     reserva.save()
 
     messages.success(request, 'Reserva actualizado!')
 
-    return redirect('/')
+    return redirect('products')
 
-
+##########################
 def eliminarReserva(request, codigo):
     reserva = Reserva.objects.get(codigo=codigo)
     reserva.delete()
 
     messages.success(request, '¡Reserva eliminada!')
 
-    return redirect('/')
+    return redirect('products')
 
+
+###############################################
 

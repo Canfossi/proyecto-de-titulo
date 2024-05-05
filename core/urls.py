@@ -25,10 +25,11 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('logout/', exit, name='exit'),
 
+
     #########################|  
    
     path('registrarReserva/', views.registrarReserva),
-    path('editar/<codigo>', views.editar),
+    path('products/editar/<codigo>', views.editar),
     path('editarReserva/', views.editarReserva),
-    path('eliminarReserva/<codigo>', views.eliminarReserva)
+    path('products/eliminarReserva/<codigo>', views.eliminarReserva)
 ]
