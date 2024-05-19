@@ -54,9 +54,11 @@ def registrarReserva(request):
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
     email = request.POST['txtEmail']
+    servicio =request.POST['txtServicio']
+
 
     reserva = Reserva.objects.create(
-    codigo=codigo, nombre=nombre, creditos=creditos, email=email)
+    codigo=codigo, nombre=nombre, creditos=creditos, email=email, servicio=servicio)
     messages.success(request, 'Reserva registrada!')
     return redirect('products')
 
@@ -70,11 +72,13 @@ def editarReserva(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
+    servicio =request.POST['txtServicio']
     
 
     reserva = Reserva.objects.get(codigo=codigo)
     reserva.nombre = nombre
     reserva.creditos = creditos
+    reserva.servicio = servicio
     
     reserva.save()
 

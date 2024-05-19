@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('codigo', models.CharField(max_length=6, primary_key=True, serialize=False)),
                 ('nombre', models.CharField(max_length=50)),
                 ('creditos', models.PositiveSmallIntegerField()),
+                ('servicio', models.CharField(max_length=50)),
             ],
         ),
     ]
