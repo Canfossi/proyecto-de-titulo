@@ -8,6 +8,7 @@ class Reserva(models.Model):
     email = models.EmailField(default='')
     servicio = models.CharField(max_length=50)
     creditos = models.PositiveSmallIntegerField()
+    fecha_hora = models.DateTimeField()
     
 
     def __str__(self):

@@ -18,6 +18,8 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=50)),
                 ('creditos', models.PositiveSmallIntegerField()),
                 ('servicio', models.CharField(max_length=50)),
+                ('fecha_hora', models.DateTimeField()),
+                
             ],
         ),
     ]

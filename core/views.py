@@ -13,7 +13,8 @@ def home(request):
     
     return render(request,'core/home.html')
 
-
+def nosotros(request):
+    return render(request,'core/nosotros.html')
 
 @login_required
 ###############
@@ -55,10 +56,11 @@ def registrarReserva(request):
     creditos = request.POST['numCreditos']
     email = request.POST['txtEmail']
     servicio =request.POST['txtServicio']
+    fecha_hora= request.POST['txtFechaReserva']
 
 
     reserva = Reserva.objects.create(
-    codigo=codigo, nombre=nombre, creditos=creditos, email=email, servicio=servicio)
+    codigo=codigo, nombre=nombre, creditos=creditos, email=email, servicio=servicio , fecha_hora=fecha_hora)
     messages.success(request, 'Reserva registrada!')
     return redirect('products')
 
@@ -73,12 +75,14 @@ def editarReserva(request):
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
     servicio =request.POST['txtServicio']
+    fecha_hora= request.POST['txtFechaReserva']
     
 
     reserva = Reserva.objects.get(codigo=codigo)
     reserva.nombre = nombre
     reserva.creditos = creditos
     reserva.servicio = servicio
+    reserva.fecha_hora = fecha_hora
     
     reserva.save()
 
