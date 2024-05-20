@@ -21,7 +21,7 @@
             <div class="card-body">
                 <form  action="/registrarReserva/" method="POST">{% csrf_token %}
                     <div class="form-group">
-                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código"
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="numero de la casa"
                             minlength="6" maxlength="6" required>
                     </div>
                     <div class="form-group">
@@ -42,6 +42,10 @@
                         <input type="text" id="txtServicio" name="txtServicio" class="form-control" placeholder="Servicio"
                             maxlength="50" required>
                     </div>
+                    <div class="form-group">
+                        <input type="datetime-local" id="txtFechaReserva" name="txtFechaReserva" class="form-control" 
+                            maxlength="50" required>
+                    </div>
 
                     
 
@@ -54,7 +58,7 @@
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
         <h1>Listado de reserva</h1>
-        <div class="table-responsive py-2">
+        <div class="table-responsive py-3">
             <table class="table table-striped">
                 <thead>
                     <tr>
