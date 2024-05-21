@@ -75,14 +75,13 @@ def editarReserva(request):
     nombre = request.POST['txtNombre']
     creditos = request.POST['numCreditos']
     servicio =request.POST['txtServicio']
-    fecha_hora= request.POST['txtFechaReserva']
+   
     
 
     reserva = Reserva.objects.get(codigo=codigo)
     reserva.nombre = nombre
     reserva.creditos = creditos
     reserva.servicio = servicio
-    reserva.fecha_hora = fecha_hora
     
     reserva.save()
 
