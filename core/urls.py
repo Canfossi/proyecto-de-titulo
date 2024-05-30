@@ -15,16 +15,17 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import home, products, register,exit,nosotros
+from .views import home, products, register,exit,nosotros,room
 from . import views
 
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', views.home, name='home'),
     path('products/', products, name='products'),
     path('register/', register, name='register'),
     path('logout/', exit, name='exit'),
     path('nosotros/', nosotros, name='nosotros'),
+    path('room/', room, name='room'),
 
 
 
@@ -33,5 +34,14 @@ urlpatterns = [
     path('registrarReserva/', views.registrarReserva),
     path('products/editar/<codigo>', views.editar),
     path('editarReserva/', views.editarReserva),
-    path('products/eliminarReserva/<codigo>', views.eliminarReserva)
+    path('products/eliminarReserva/<codigo>', views.eliminarReserva),
+
+
+    ###############################
+    
+    path('<str:room>/', views.room, name='room'),
+    path('nosotros/checkview', views.checkview, name='checkview'),
+    path('send', views.send, name='send'),
+    path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+
 ]
